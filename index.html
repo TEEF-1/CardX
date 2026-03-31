@@ -266,11 +266,11 @@
             </div>
             <div style="background: #1a1a1a; padding: 20px; border-radius: 15px; border-right: 4px solid var(--accent-blue);">
                 <small style="color: var(--text-muted);">الخطوة 2</small>
-                <p style="margin: 5px 0;">صور إيصال العملية</p>
+                <p style="margin: 5px 0;">صور إيصال الدفع</p>
             </div>
             <div style="background: #1a1a1a; padding: 20px; border-radius: 15px; border-right: 4px solid var(--accent-blue);">
                 <small style="color: var(--text-muted);">الخطوة 3</small>
-                <p style="margin: 5px 0;">أرسل الإيصال واستلم</p>
+                <p style="margin: 5px 0;"> أرسل الإيصال على صفحة التلجرام واستلم بطاقتك بشكل فوري</p>
             </div>
         </div>
 
@@ -292,24 +292,76 @@
         alert('تم نسخ عنوان المحفظة بنجاح!');
     }
 
-    // إشعارات الشراء الوهمية لزيادة الثقة
-    const names = ['أحمد', 'سارة', 'خالد', 'فهد', 'عمر', 'إبراهيم'];
-    const countries = ['السعودية', 'الإمارات', 'الكويت', 'قطر', 'مصر'];
+    // إشعارات الشراء الوهمية المحدثة
+    const names = [
+        'أحمد', 'سارة', 'خالد', 'فهد', 'عمر', 'إبراهيم', 'محمد', 'عبدالله', 'يوسف', 'علي', 'نورة', 'مريم',
+        'John', 'Michael', 'David', 'Emma', 'Alex', 'Liam', 'Sophia', 'James'
+    ];
     
-    function showNotification() {
-        const toast = document.getElementById('notification-toast');
-        const name = names[Math.floor(Math.random() * names.length)];
-        const country = countries[Math.floor(Math.random() * countries.length)];
-        
-        document.getElementById('notify-text').innerText = `✅ قام ${name} من ${country} بشراء بطاقة بقيمة 5,000$ قبل قليل.`;
-        
-        toast.style.display = 'block';
-        setTimeout(() => { toast.style.display = 'none'; }, 5000);
+    const countries = [
+        'السعودية', 'الإمارات', 'الكويت', 'قطر', 'مصر', 'البحرين', 'عمان',
+        'أمريكا', 'كندا', 'بريطانيا', 'ألمانيا', 'أستراليا', 'فرنسا'
+    ];
+    
+    // قيم البطاقات المتاحة في المتجر
+    const amounts = ['2,000$', '5,000$', '15,000$'];
+
+    function getRandomItem(arr) {
+        return arr[Math.floor(Math.random() * arr.length)];
     }
 
-    // تكرار الإشعار كل 15-20 ثانية
-    setInterval(showNotification, 18000);
-</script>
+    function showNotification() {
+        const toast = document.getElementById('notification-toast');
+        
+        // تحديد ما إذا كان المشتري شخص واحد أم شخصين (احتمال 30% لشخصين في نفس الوقت)
+        const isDoublePurchase = Math.random() > 0.7; 
 
-</body>
-</html>
+        let notificationText = "";
+
+        if (isDoublePurchase) {
+            const name1 = getRandomItem(names);
+            const country1 = getRandomItem(countries);
+            const amount1 = getRandomItem(amounts);
+
+            let name2 = getRandomItem(names);
+            let country2 = getRandomItem(countries);
+            const amount2 = getRandomItem(amounts);
+
+            // التأكد من عدم تكرار نفس الاسم في الإشعار المزدوج
+            while(name1 === name2) name2 = getRandomItem(names);
+
+            notificationText = `✅ قام ${name1} من ${country1} بشراء بطاقة ${amount1}، و ${name2} من ${country2} بشراء بطاقة ${amount2} قبل قليل.`;
+        } else {
+            const name = getRandomItem(names);
+            const country = getRandomItem(countries);
+            const amount = getRandomItem(amounts);
+            notificationText = `✅ قام ${name} من ${country} بشراء بطاقة بقيمة ${amount} قبل قليل.`;
+        }
+
+        document.getElementById('notify-text').innerText = notificationText;
+
+        // إعادة تشغيل الأنيميشن وإظهار الإشعار
+        toast.style.display = 'none'; // إخفاء سريع إن كان ظاهراً
+        setTimeout(() => {
+            toast.style.display = 'block';
+        }, 50);
+
+        // إخفاء الإشعار بعد 6 ثواني (تمت زيادة الوقت قليلاً ليتمكن الزائر من قراءة الإشعار المزدوج)
+        setTimeout(() => { toast.style.display = 'none'; }, 6000);
+    }
+
+    // تكرار الإشعار بوقت عشوائي بين 12 و 18 ثانية لجعله واقعياً أكثر
+    function scheduleNextNotification() {
+        const randomTime = Math.floor(Math.random() * (18000 - 12000 + 1)) + 12000;
+        setTimeout(() => {
+            showNotification();
+            scheduleNextNotification();
+        }, randomTime);
+    }
+
+    // بدء تشغيل الإشعارات (أول إشعار يظهر بعد 4 ثواني من فتح الموقع)
+    setTimeout(() => {
+        showNotification();
+        scheduleNextNotification();
+    }, 4000);
+</script>
