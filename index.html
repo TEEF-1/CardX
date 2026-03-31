@@ -46,9 +46,24 @@
             margin-bottom: 60px;
         }
 
+        /* حاوية البطاقة بالكامل (الفيزا + تفاصيل السعر) */
+        .card-group {
+            transition: 0.4s ease-in-out;
+            border-radius: 20px;
+            overflow: hidden; /* لتأثير الحواف الناعمة */
+            border: 2px solid transparent; /* إطار شفاف في الحالة العادية */
+        }
+
+        /* تأثير التفاعل (Hover) على المجموعة بالكامل */
+        .card-group:hover {
+            transform: translateY(-15px) scale(1.02); /* رفع البطاقة وتكبيرها قليلاً */
+            border-color: var(--gold); /* إظهار الإطار الذهبي */
+            /* تأثير التوهج الذهبي الفخم (Glow) */
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.4); 
+        }
+
         .visa-card-visual {
             background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
-            border-radius: 20px;
             padding: 25px;
             height: 180px;
             position: relative;
@@ -67,10 +82,9 @@
 
         .card-info-box {
             background: var(--card-bg);
-            border-radius: 0 0 20px 20px;
             padding: 25px;
-            margin-top: -10px;
             border: 1px solid #222;
+            border-top: none;
             text-align: right;
             direction: rtl;
         }
@@ -164,7 +178,7 @@
             border: 1px solid #ff4444;
         }
 
-        footer { text-align: center; padding: 60px 20px; color: #444; font-size: 0.9rem; border-top: 1px solid #111; }
+        footer { text-align: center; padding: 60px 20px; color: #444; font-size: 0.9rem; border-top: 1px solid #111; margin-top: 50px; }
     </style>
 </head>
 <body>
@@ -177,10 +191,10 @@
 <div class="container">
 
     <div class="grid">
-        <div class="card-item">
+        <div class="card-group">
             <div class="visa-card-visual">
                 <div class="chip"></div>
-                <div class="card-number">**** **** **** 2000</div>
+                <div class="card-number">4532 8810 4421 2000</div>
                 <div class="logo-visa">Visa</div>
             </div>
             <div class="card-info-box">
@@ -190,81 +204,4 @@
             </div>
         </div>
 
-        <div class="card-item">
-            <div class="visa-card-visual" style="border-color: var(--gold);">
-                <div class="chip"></div>
-                <div class="card-number" style="color: var(--gold);">**** **** **** 5000</div>
-                <div class="logo-visa">Visa</div>
-            </div>
-            <div class="card-info-box" style="border-color: var(--gold);">
-                <span class="balance-label">رصيد البطاقة</span>
-                <span class="balance-amount">$5,000</span>
-                <div class="sale-price" style="background: var(--gold); color: #000; font-weight: bold;">السعر: 350$ USDT</div>
-            </div>
-        </div>
-
-        <div class="card-item">
-            <div class="visa-card-visual">
-                <div class="chip"></div>
-                <div class="card-number">**** **** **** 1500</div>
-                <div class="logo-visa">Visa</div>
-            </div>
-            <div class="card-info-box">
-                <span class="balance-label">رصيد البطاقة</span>
-                <span class="balance-amount">$15,000</span>
-                <div class="sale-price">السعر: 800$ USDT</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="payment-gateway">
-        <h2>خطوات إتمام الشراء الآمن</h2>
-        
-        <div class="step">
-            <div class="step-num">1</div>
-            <div>
-                <b style="color: var(--gold); display: block;">تحويل الرصيد</b>
-                حول قيمة الباقة المختارة لعنوان المحفظة أدناه (USDT - TRC20).
-            </div>
-        </div>
-
-        <div class="wallet-container">
-            <span style="color: var(--usdt-green); font-weight: bold;">Tether USDT (TRC20 Network)</span>
-            <span class="wallet-address">TGhHCa4LrFhDM6nVKLW14jYkj4JgcMo2Yu</span>
-            <small style="color: #555; margin-top: 10px; display: block;">(اضغط ضغطة مطولة لنسخ العنوان)</small>
-        </div>
-
-        <div class="step">
-            <div class="step-num">2</div>
-            <div>
-                <b style="color: var(--gold); display: block;">تصوير وصل الدفع</b>
-                قم بأخذ لقطة شاشة (Screenshot) لوصل التحويل الناجح من محفظتك.
-            </div>
-        </div>
-
-        <div class="step" style="border-right-color: #0088cc;">
-            <div class="step-num">3</div>
-            <div>
-                <b style="color: #0088cc; display: block;">تأكيد الدفع والاستلام</b>
-                اضغط على الزر أدناه لإرسال الوصل إلينا، وسوف تستلم بيانات البطاقة فوراً.
-            </div>
-        </div>
-
-        <div class="warning">
-            ⚠️ تنبيه: لن يتم قبول أي طلب بدون إرسال صورة وصل الدفع الواضحة.
-        </div>
-
-        <a href="https://t.me/TELNBL" class="btn-confirm" target="_blank">
-            إرسال الوصل واستلام البطاقة الآن ✈️
-        </a>
-    </div>
-
-</div>
-
-<footer>
-    <p>CardX VIP Store © 2026 | جميع الحقوق محفوظة</p>
-    <p style="margin-top: 10px;">التواصل الرسمي الوحيد عبر تليجرام: <b>TELNBL@</b></p>
-</footer>
-
-</body>
-</html>
+        <div class="card-group" style="border-color: rgba
