@@ -317,7 +317,7 @@
 
     // دالة الشراء (تحويل مباشر للتليجرام)
     function buyNow(productName) {
-      const message = encodeURIComponent(`مرحباً، أريد شراء: ${productName}. \nلقد قمت بتحويل المبلغ، وهذا هو إيصال الدفع: `);
+      const message = encodeURIComponent(`مرحباً، أريد شراء: ${productName}. \n `);
       const telegramLink = `https://t.me/TELNBL?text=${message}`;
       window.open(telegramLink, '_blank');
     }
