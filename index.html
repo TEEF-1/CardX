@@ -24,7 +24,6 @@
             line-height: 1.6;
         }
 
-        /* هيدر الموقع */
         header {
             background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
             padding: 70px 20px;
@@ -38,7 +37,6 @@
 
         .container { max-width: 1100px; margin: auto; padding: 50px 20px; }
 
-        /* شبكة البطاقات */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -46,19 +44,18 @@
             margin-bottom: 60px;
         }
 
-        /* حاوية البطاقة بالكامل (الفيزا + تفاصيل السعر) */
+        /* حاوية البطاقة بالكامل لتفعيل التأثير */
         .card-group {
             transition: 0.4s ease-in-out;
             border-radius: 20px;
-            overflow: hidden; /* لتأثير الحواف الناعمة */
-            border: 2px solid transparent; /* إطار شفاف في الحالة العادية */
+            overflow: hidden;
+            border: 2px solid transparent;
+            cursor: pointer;
         }
 
-        /* تأثير التفاعل (Hover) على المجموعة بالكامل */
         .card-group:hover {
-            transform: translateY(-15px) scale(1.02); /* رفع البطاقة وتكبيرها قليلاً */
-            border-color: var(--gold); /* إظهار الإطار الذهبي */
-            /* تأثير التوهج الذهبي الفخم (Glow) */
+            transform: translateY(-15px) scale(1.02);
+            border-color: var(--gold);
             box-shadow: 0 20px 60px rgba(212, 175, 55, 0.4); 
         }
 
@@ -78,7 +75,9 @@
 
         .chip { width: 50px; height: 38px; background: linear-gradient(135deg, #d4af37 0%, #8a6d3b 100%); border-radius: 7px; }
         .logo-visa { font-weight: bold; font-style: italic; font-size: 1.8rem; color: #fff; }
-        .card-number { font-size: 1.3rem; color: #fff; letter-spacing: 3px; margin-top: 20px; }
+        
+        /* أرقام البطاقة بالنجوم */
+        .card-number { font-size: 1.4rem; color: #fff; letter-spacing: 4px; margin-top: 20px; font-family: monospace; }
 
         .card-info-box {
             background: var(--card-bg);
@@ -93,7 +92,6 @@
         .balance-amount { display: block; font-size: 2.4rem; font-weight: bold; color: var(--gold); margin: 5px 0; }
         .sale-price { font-size: 1.4rem; color: #fff; background: #222; padding: 12px; border-radius: 10px; border-right: 5px solid var(--gold); }
 
-        /* بوابة الدفع */
         .payment-gateway {
             background: #0f0f0f;
             border-radius: 25px;
@@ -127,7 +125,6 @@
             flex-shrink: 0;
         }
 
-        /* صندوق المحفظة */
         .wallet-container {
             background: #000;
             padding: 25px;
@@ -194,7 +191,7 @@
         <div class="card-group">
             <div class="visa-card-visual">
                 <div class="chip"></div>
-                <div class="card-number">4532 8810 4421 2000</div>
+                <div class="card-number">**** **** **** 8421</div>
                 <div class="logo-visa">Visa</div>
             </div>
             <div class="card-info-box">
@@ -204,4 +201,81 @@
             </div>
         </div>
 
-        <div class="card-group" style="border-color: rgba
+        <div class="card-group">
+            <div class="visa-card-visual" style="border-color: var(--gold);">
+                <div class="chip"></div>
+                <div class="card-number" style="color: var(--gold);">**** **** **** 1190</div>
+                <div class="logo-visa">Visa</div>
+            </div>
+            <div class="card-info-box" style="border-color: var(--gold);">
+                <span class="balance-label">رصيد البطاقة</span>
+                <span class="balance-amount">$5,000</span>
+                <div class="sale-price" style="background: var(--gold); color: #000; font-weight: bold;">السعر: 350$ USDT</div>
+            </div>
+        </div>
+
+        <div class="card-group">
+            <div class="visa-card-visual">
+                <div class="chip"></div>
+                <div class="card-number">**** **** **** 3381</div>
+                <div class="logo-visa">Visa</div>
+            </div>
+            <div class="card-info-box">
+                <span class="balance-label">رصيد البطاقة</span>
+                <span class="balance-amount">$15,000</span>
+                <div class="sale-price">السعر: 800$ USDT</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="payment-gateway">
+        <h2>خطوات إتمام الشراء الآمن</h2>
+        
+        <div class="step">
+            <div class="step-num">1</div>
+            <div>
+                <b style="color: var(--gold); display: block;">تحويل الرصيد</b>
+                حول قيمة الباقة المختارة لعنوان المحفظة أدناه (USDT - TRC20).
+            </div>
+        </div>
+
+        <div class="wallet-container">
+            <span style="color: var(--usdt-green); font-weight: bold;">Tether USDT (TRC20 Network)</span>
+            <span class="wallet-address">TGhHCa4LrFhDM6nVKLW14jYkj4JgcMo2Yu</span>
+            <small style="color: #555; margin-top: 10px; display: block;">(اضغط ضغطة مطولة لنسخ العنوان)</small>
+        </div>
+
+        <div class="step">
+            <div class="step-num">2</div>
+            <div>
+                <b style="color: var(--gold); display: block;">تصوير وصل الدفع</b>
+                قم بأخذ لقطة شاشة (Screenshot) لوصل التحويل الناجح من محفظتك.
+            </div>
+        </div>
+
+        <div class="step" style="border-right-color: #0088cc;">
+            <div class="step-num">3</div>
+            <div>
+                <b style="color: #0088cc; display: block;">تأكيد الدفع والاستلام</b>
+                اضغط على الزر أدناه لإرسال الوصل إلينا، وسوف تستلم بيانات البطاقة فوراً.
+            </div>
+        </div>
+
+        <div class="warning">
+            ⚠️ تنبيه: لن يتم قبول أي طلب بدون إرسال صورة وصل الدفع الواضحة.
+        </div>
+
+        <a href="https://t.me/TELNBL" class="btn-confirm" target="_blank">
+            إرسال الوصل واستلام البطاقة الآن ✈️
+        </a>
+    </div>
+
+</div>
+
+<footer>
+    <p>CardX VIP Store © 2026 | جميع الحقوق محفوظة</p>
+    <p style="margin-top: 10px;">التواصل الرسمي الوحيد عبر تليجرام: <b>TELNBL@</b></p>
+</footer>
+
+</body>
+</html>
