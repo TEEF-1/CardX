@@ -1,88 +1,40 @@
-<script>
-    // وظيفة النسخ
-    function copyWallet() {
-        const addr = document.getElementById('wallet-addr').innerText;
-        navigator.clipboard.writeText(addr);
-        alert('تم نسخ عنوان المحفظة بنجاح!');
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CardX Store | متجر البطاقات الرقمية</title>
+  <style>
+    :root {
+      --bg: #0b1220;
+      --bg-soft: #121a2b;
+      --card: #182235;
+      --card-2: #1f2b42;
+      --text: #f5f7fb;
+      --muted: #a8b3c7;
+      --primary: #4da3ff;
+      --primary-dark: #2b7ed8;
+      --success: #22c55e;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --gold: #d4af37;
+      --usdt-green: #26a17b;
+      --border: rgba(255,255,255,0.08);
+      --shadow: 0 10px 30px rgba(0,0,0,0.25);
+      --radius: 18px;
     }
 
-    // إشعارات الشراء الوهمية المحدثة
-    const names = [
-        'أحمد', 'سارة', 'خالد', 'فهد', 'عمر', 'إبراهيم', 'محمد', 'عبدالله', 'يوسف', 'علي', 'نورة', 'مريم',
-        'John', 'Michael', 'David', 'Emma', 'Alex', 'Liam', 'Sophia', 'James'
-    ];
-    
-    const countries = [
-        'السعودية', 'الإمارات', 'الكويت', 'قطر', 'مصر', 'البحرين', 'عمان',
-        'أمريكا', 'كندا', 'بريطانيا', 'ألمانيا', 'أستراليا', 'فرنسا'
-    ];
-    
-    // قيم البطاقات المتاحة في المتجر
-    const amounts = ['2,000$', '5,000$', '15,000$'];
-
-    function getRandomItem(arr) {
-        return arr[Math.floor(Math.random() * arr.length)];
-    }
-
-    function showNotification() {
-        const toast = document.getElementById('notification-toast');
-        
-        // تحديد ما إذا كان المشتري شخص واحد أم شخصين (احتمال 30% لشخصين في نفس الوقت)
-        const isDoublePurchase = Math.random() > 0.7; 
-
-        let notificationHtml = "";
-
-        if (isDoublePurchase) {
-            const name1 = getRandomItem(names);
-            const country1 = getRandomItem(countries);
-            const amount1 = getRandomItem(amounts);
-
-            let name2 = getRandomItem(names);
-            let country2 = getRandomItem(countries);
-            const amount2 = getRandomItem(amounts);
-
-            // التأكد من عدم تكرار نفس الاسم في الإشعار المزدوج
-            while(name1 === name2) name2 = getRandomItem(names);
-
-            // تم التعديل هنا: استخدام <br><br> للنزول سطر جديد، وتمييز القيم بلون ذهبي وخط عريض
-            notificationHtml = `
-                <div style="margin-bottom: 8px;">✅ قام <b>${name1}</b> من ${country1} بشراء بطاقة بقيمة <b style="color: var(--gold);">${amount1}</b></div>
-                <div style="border-top: 1px solid #333; padding-top: 8px;">✅ قام <b>${name2}</b> من ${country2} بشراء بطاقة بقيمة <b style="color: var(--gold);">${amount2}</b></div>
-            `;
-        } else {
-            const name = getRandomItem(names);
-            const country = getRandomItem(countries);
-            const amount = getRandomItem(amounts);
-            
-            // تصميم الإشعار الفردي
-            notificationHtml = `✅ قام <b>${name}</b> من ${country} بشراء بطاقة بقيمة <b style="color: var(--gold);">${amount}</b> قبل قليل.`;
-        }
-
-        // تغيير innerText إلى innerHTML لكي يتمكن المتصفح من قراءة تنسيقات النزول لسطر جديد
-        document.getElementById('notify-text').innerHTML = notificationHtml;
-
-        // إعادة تشغيل الأنيميشن وإظهار الإشعار
-        toast.style.display = 'none'; 
-        setTimeout(() => {
-            toast.style.display = 'block';
-        }, 50);
-
-        // إخفاء الإشعار بعد 6.5 ثواني ليعطي وقتاً كافياً لقراءة الإشعار المزدوج
-        setTimeout(() => { toast.style.display = 'none'; }, 6500);
-    }
-
-    // تكرار الإشعار بوقت عشوائي بين 12 و 18 ثانية
-    function scheduleNextNotification() {
-        const randomTime = Math.floor(Math.random() * (18000 - 12000 + 1)) + 12000;
-        setTimeout(() => {
-            showNotification();
-            scheduleNextNotification();
-        }, randomTime);
-    }
-
-    // بدء تشغيل الإشعارات (أول إشعار يظهر بعد 4 ثواني من فتح الموقع)
-    setTimeout(() => {
-        showNotification();
-        scheduleNextNotification();
-    }, 4000);
-</script>
+    body.light-mode {
+      --bg: #f4f7fb;
+      --bg-soft: #ffffff;
+      --card: #ffffff;
+      --card-2: #eef4fb;
+      --text: #1b2430;
+      --muted: #607086;
+      --primary: #1877f2;
+      --primary-dark: #0f5fc8;
+      --success: #16a34a;
+      --warning: #d97706;
+      --danger: #dc2626;
+      --border: rgba(0,0,0,0.08);
+      --shadow: 0 10px 30px rgba(0,0,
