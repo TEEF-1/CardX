@@ -74,7 +74,7 @@
     
     .product-card { 
         width: 100%; 
-        max-width: 700px; /* جعل البطاقة أعرض لتبدو فخمة */
+        max-width: 700px; 
         background: linear-gradient(180deg, var(--card), var(--bg-soft)); 
         border: 1px solid var(--border); 
         border-radius: 24px; 
@@ -138,7 +138,7 @@
     }
     .btn:hover { background: var(--gold-light); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3); }
 
-    /* Payment Gateway Section (Moved to Bottom) */
+    /* Payment Gateway Section */
     .payment-gateway { 
         background: var(--card-2); 
         border-radius: 28px; 
@@ -315,9 +315,9 @@
       alert('تم نسخ عنوان المحفظة بنجاح!');
     }
 
-    // دالة الشراء (تحويل مباشر للتليجرام)
+    // دالة الشراء بعد التعديل (إزالة الجملة الخاصة بإيصال الدفع)
     function buyNow(productName) {
-      const message = encodeURIComponent(`مرحباً، أريد شراء: ${productName}. \n `);
+      const message = encodeURIComponent(`مرحباً، أريد شراء: ${productName}.`);
       const telegramLink = `https://t.me/TELNBL?text=${message}`;
       window.open(telegramLink, '_blank');
     }
